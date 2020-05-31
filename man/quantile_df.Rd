@@ -4,16 +4,26 @@
 \alias{quantile_df}
 \title{Create tibble of quantiles}
 \usage{
-quantile_df(x, p = c(0.25, 0.5, 0.75))
+quantile_df(x, p = c(0.25, 0.5, 0.75), na.rm = FALSE)
 }
 \arguments{
 \item{x}{numeric vector whose quantiles are wanted, or column name}
 
 \item{p}{probability values}
+
+\item{na.rm}{boolean flag; pre-filter NA's?}
 }
 \value{
 tibble
 }
 \description{
-Creates a single-row tibble with quantiles and pr values.
+Creates a single-row tibble with quantiles and pr values. Intended for use
+with \code{summarize()}.
+}
+\examples{
+library(tidyverse)
+library(rzdr)
+diamonds \%>\%
+  group_by(cut) \%>\%
+  summarize(quantile_df(cut))
 }
