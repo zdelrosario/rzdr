@@ -9,6 +9,12 @@
 #' @import glue
 #' @import tibble
 #' @export
+#' @examples
+#' library(tidyverse)
+#' library(rzdr)
+#' diamonds %>%
+#'   group_by(cut) %>%
+#'   summarize(quantile_df(cut))
 
 quantile_df <- function(x, p = c(0.25, 0.50, 0.75)) {
   tibble("{{ x }}" := quantile(x, p), "{{ x }}_q" := p)
